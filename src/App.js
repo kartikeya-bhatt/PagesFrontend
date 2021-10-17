@@ -25,9 +25,9 @@ function MyVerticallyCenteredModal(props)  {
             method: 'POST',
             body: JSON.stringify(obj)
         });
-        const value = request.body
+        const value = JSON.parse(request.body)
 
-        if(value != null) {
+        if(value == "SUCCESS") {
             const url = "https://p-roses-financing-malpractice.trycloudflare.com/auth/" + inputs.username
             await fetch(url, {method: "GET"})
         }
