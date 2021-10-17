@@ -9,7 +9,7 @@ const Posts = () => {
 
     useEffect(() => {
         const getPosts = async () => {
-            const url = "http://127.0.0.1:8787/posts"
+            const url = "https://my-worker.krtky020.workers.dev/posts"
             const resp = await fetch(url, {
                 method: "GET",
             })

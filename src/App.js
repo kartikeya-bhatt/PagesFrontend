@@ -21,7 +21,7 @@ function MyVerticallyCenteredModal(props)  {
             user: inputs.username
         }
 
-        const request = await fetch ("http://127.0.0.1:8787/check-users", {
+        const request = await fetch ("https://my-worker.krtky020.workers.dev/check-users", {
             method: 'POST',
             body: JSON.stringify(obj)
         });
@@ -46,7 +46,7 @@ function MyVerticallyCenteredModal(props)  {
             content: inputs.content,
         };
 
-        const url = "http://127.0.0.1:8787/posts"
+        const url = "https://my-worker.krtky020.workers.dev/posts"
         await fetch(url, {
             method: "POST",
             body: JSON.stringify(post),
