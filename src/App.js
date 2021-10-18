@@ -4,7 +4,6 @@ import React, {useState} from "react";
 import './App.css';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { Alert } from 'react-native';
 
 function MyVerticallyCenteredModal(props)  {
 
@@ -17,30 +16,6 @@ function MyVerticallyCenteredModal(props)  {
     }
 
     const handleSubmit = async (event) => {
-        const obj = {
-            user: inputs.username
-        }
-
-        const request = await fetch ("https://my-worker.krtky020.workers.dev/check-users", {
-            method: 'POST',
-            body: JSON.stringify(obj)
-        });
-        const value = request.json()
-
-
-        if(value == "\"SUCCESS\"") {
-            const url = "https://p-roses-financing-malpractice.trycloudflare.com/auth/" + inputs.username
-            await fetch(url, {method: "GET"})
-        }
-        else {
-            const url = "https://p-roses-financing-malpractice.trycloudflare.com/verify"
-            const resp = await fetch(url, {method: "GET"})
-            if(resp.body.toString() !== inputs.username) {
-                Alert.alert("You do not have permission to post with this username!")
-                return
-            }
-        }
-
         const post = {
             title: inputs.title,
             username: inputs.username,
@@ -48,12 +23,15 @@ function MyVerticallyCenteredModal(props)  {
         };
 
         const url = "https://my-worker.krtky020.workers.dev/posts"
-        await fetch(url, {
+        const resp = await fetch(url, {
             method: "POST",
             body: JSON.stringify(post),
         });
 
-        window.location.reload(false);
+        if(resp.status !== 200)
+            alert("You do not have permission to post with this username!")
+        else
+            window.location.reload(false);
     }
 
     return (
@@ -113,7 +91,7 @@ const App = () => {
             <div>
 
                 <div className="pt-3 col-12 col-lg-6 offset-lg-3">
-                    <h1 className="text-center">My Social Media</h1>
+                    <h1 className="text-center">Stack Underflow</h1>
                 </div>
 
                 <div className="row pt-3">
